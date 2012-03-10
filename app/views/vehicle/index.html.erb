@@ -1,0 +1,10 @@
+<%= link_to "Add New Vehicle", :action => "register" %><br/><br/>
+<%= link_to "Search Vehicle with filters", :action => "search" %><br/><br/>
+<% form_for :vehicle do |form| %>
+  <fieldset>
+    <legend>Vehicle Details</legend>
+    <%= render :partial => "all_vehicle_field_row",
+      :locals  => { :form => form, :vehicles =>@vehicles, :user => @user, :search => false} %>
+  </fieldset>
+<% end %>
+<br/><br/>

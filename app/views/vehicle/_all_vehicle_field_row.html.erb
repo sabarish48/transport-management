@@ -1,0 +1,30 @@
+<div class="form_row">
+  <table border="1" cellpadding="10" cellspacing ="1">
+    <tr>
+      <th> Vehicle Number </th>
+      <th> Type </th>
+      <th> SubType </th>
+      <th> Capacity </th>
+      <th> Availability </th>
+      <th> From Station </th>
+      <th> To Station </th>
+      <% unless search.blank? %>
+      <th> Booking Status </th>
+      <% end %>
+    </tr>
+  <% vehicles.each do |vehicle| %>
+    <tr>
+      <td><%= vehicle.number %></td>
+      <td><%= vehicle.main_type %></td>
+      <td><%= vehicle.sub_type %></td>
+      <td><%= vehicle.capacity %></td>
+      <td><%= vehicle.available %></td>
+      <td><%= vehicle.from %></td>
+      <td><%= vehicle.to %></td>
+      <% unless search.blank? %>
+      <td><%= vehicle.available > 0 ? (link_to("Book", :action => "index")) : "NA" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+</div>

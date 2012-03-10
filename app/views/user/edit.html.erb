@@ -1,0 +1,28 @@
+<%= link_to "View Profile", :action => "index" %><br/>
+<%= error_messages_for 'user' %><br/>
+<% form_for :user do |form| %>
+  <fieldset>
+    <legend>Update Email</legend>
+    <%= render :partial => "email_field_row", :locals => { :form => form } %>
+    <%= hidden_field_tag "attribute", "email", :id => nil%>
+    <%= submit_tag "Update", :class => "submit" %>
+  </fieldset>
+<% end %><br/><br/>
+<% form_for :user do |form| %>
+  <fieldset>
+    <legend>Update Password</legend>
+    <%= render :partial => "password_field_row",
+      :locals => { :form => form,
+      :field => "current_password" } %>
+    <%= render :partial => "password_field_row",
+      :locals => { :form => form,
+      :field => "password",
+      :field_title => "New password" } %>
+    <%= render :partial => "password_field_row",
+      :locals => { :form => form,
+      :field => "password_confirmation",
+      :field_title => "Confirm" } %>
+    <%= hidden_field_tag "attribute", "password", :id => nil %>
+    <%= submit_tag "Update", :class => "submit" %>
+  </fieldset>
+<% end %>

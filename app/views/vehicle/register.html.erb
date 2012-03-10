@@ -1,0 +1,30 @@
+<%= link_to "View All Vehicles", :action => "index" %><br/><br/>
+<h2>Register</h2><br/>
+<% form_for :vehicle do |form| %>
+  <fieldset>
+    <legend>Enter Vehicle Details</legend>
+    <%= error_messages_for "vehicle" %>
+
+    <%= render :partial => "number_field_row",
+      :locals => { :form => form } %>
+
+    <%= render :partial => "type_field_row",
+      :locals => { :form => form } %>
+
+    <%= render :partial => "subtype_field_row",
+      :locals => { :form => form } %>
+
+    <%= render :partial => "capacity_field_row",
+      :locals => { :form => form} %>
+
+    <%= render :partial => "from_field_row",
+      :locals => { :form => form} %>
+
+    <%= render :partial => "to_field_row",
+      :locals => { :form => form} %>
+
+    <div class="form_row">
+      <%= submit_tag "Register!", :class => "submit" %>
+    </div>
+  </fieldset>
+<% end %>

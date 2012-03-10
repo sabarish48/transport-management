@@ -1,0 +1,36 @@
+<%= link_to "View All Vehicles", :action => "index" %><br/><br/>
+<% form_for :vehicle do |form| %>
+  <fieldset>
+    <legend>Enter Search Options</legend>
+    <span style ="float: left">
+      <label id="from_station">From:</label>
+      <%= form.select :from, Vehicle.all.collect(&:from).uniq, :size => Vehicle::TYPE_SIZE %>
+    </span><span>
+      <label id="to_station">To:</label>
+      <%= form.select :to, Vehicle.all.collect(&:to).uniq, :size => Vehicle::TYPE_SIZE %>
+    </span><br/><br/>
+    <span>
+      <label id="type">Type:</label>
+      <%= form.select :type, Vehicle::TYPE_VALUES, :size => Vehicle::TYPE_SIZE %>
+    </span><br/><br/>
+    <span>
+      <label id="subtype">SubType:</label>
+      <%= form.select :sub_type, Vehicle::SUB_TYPE_VALUES, :size => Vehicle::TYPE_SIZE %>
+    </span><br/><br/>
+    <span>
+      <label id="available">No of Seats:</label>
+      <%= form.select :available, Vehicle::BOOK_VALUES, :size => Vehicle::TYPE_SIZE %>
+    </span><br/><br/>
+    <div class="form_row">
+      <%= submit_tag 'Search!', :class => "submit", :controller => "vehicle", :action => "search" %>
+    </div>
+  </fieldset>
+  <br/>
+
+  <fieldset>
+    <legend>Vehicle Details</legend>
+    <%= render :partial => "all_vehicle_field_row",
+      :locals  => { :form => form, :vehicles =>@vehicles, :user => @user, :search => true} %>
+  </fieldset>
+<% end %>
+<br/><br/>
